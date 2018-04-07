@@ -14,3 +14,5 @@
 从远程克隆一个仓库到本地：git clone 仓库路径
 创建并切换到分支：git checkout -b dev (git checkout命令加上-b参数表示创建并切换，相当于以下两条命令:git branch dev   git checkout dev)
 查看当前分支: git branch (git branch命令会列出所有分支，当前分支前面会标一个*号)
+合并指定分支到当前分支：git merge 指定分支名称（如在主分支中合并dev：git merge dev)
+删除dev分支：git branch -d dev
