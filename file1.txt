@@ -1,0 +1,50 @@
+工作区提交到暂存区：git add filename
+暂存区提交到分支：git commit -m "提交说明"
+查看仓库状态：git status
+查看提交日志：git log 另一种查看方法 git log --pretty=oneline
+查看所有的git命令记录：git reflog
+查看文件是前后改动：git diff filename
+版本回退到上一个版本：git reset --hard HEAD^ 
+版本回退到指定版本：git reset --hard 提交id
+撤销文件在工作区的全部修改：git checkout -- filename
+撤销暂存区的全部修改：git reset HEAD filename
+创建SSH key: ssh-keygen -t rsa -C "yourEmail@example.com"
+关联本地与远程仓库：git remote add origin 仓库路径
+把本地仓库的所有内容推送到远程仓库：git push -u origin master/git push origin master (1.把本地库的内容推送到远程，用git push命令，实际上是把当前分支master推送到远程。2.由于远程库是空的，我们第一次推送master分支时，加上了-u参数，Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令。)
+从远程克隆一个仓库到本地：git clone 仓库路径
+创建并切换到分支：git checkout -b dev (git checkout命令加上-b参数表示创建并切换，相当于以下两条命令:git branch dev   git checkout dev)
+查看当前分支: git branch (git branch命令会列出所有分支，当前分支前面会标一个*号)
+合并指定分支到当前分支：git merge 指定分支名称（如在主分支中合并dev：git merge dev)
+删除dev分支：git branch -d dev
+如果分支有内容没有合并，此时删除会失败，强行删除命令：git branch -D dev
+带参数的log(树形log):git log --graph --pretty=oneline --abbrev-commit
+强制禁用Fast forward:git merge --no-ff -m "merge with no-ff" dev
+
+分支管理策略：
+1.首先，master分支应该是非常稳定的，也就是仅用来发布新版本，平时不能在上面干活；
+2.那在哪干活呢？干活都在dev分支上，也就是说，dev分支是不稳定的，到某个时候，比如1.0版本发布时，再把dev分支合并3.到master上，在master分支发布1.0版本；
+你和你的小伙伴们每个人都在dev分支上干活，每个人都有自己的分支，时不时地往dev分支上合并就可以了。
+
+缓存工作区：git stash 
+查看缓存的工作区：git stash list
+恢复缓存工作区：git stash appy(恢复后，stash内容并不删除，你需要用git stash drop来删除；)
+git stash pop (恢复的同时把stash内容也删了)
+
+可以多次stash，恢复的时候，先用git stash list查看，然后恢复指定的stash，用命令：
+$ git stash apply stash@{0}
+
+查看远程仓库名称：git remote 
+查看远程仓库详细信息：git remote -v
+强制推送到远程分支：git push -f
+在本地创建和远程分支对应的分支(dev)：git checkout -b dev origin/dev
+建立本地分支和远程分支的关联(dev):git branch --set-upstream dev origin/dev
+
+创建标签：git tag v1.0 (标签打在commit上，默认标签是打在最新提交的commit上的，在某次提交上打标签：git tag v0.9 6224937）
+查看标签：git tag 
+查看标签详细信息：git show v1.0
+创建带有说明的标签, 用-a指定标签名，-m指定说明文字:git tag -a v1.0 -m "version 1.0 released" 6224937 
+删除某个标签：git tag -d v1.0
+推送本地某个标签到远程：git push origin v1.0
+推送所有本地标签到远程：git push origin --tags
+如果标签已经推送到远程，要删除远程标签就麻烦一点，先从本地删除：git tag -d v1.0
+然后，从远程删除。删除命令也是push，但是格式如下：git push origin :refs/tags/v1.0
