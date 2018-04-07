@@ -1,0 +1,10 @@
+工作区提交到暂存区：git add filename
+暂存区提交到分支：git commit -m "提交说明"
+查看仓库状态：git status
+查看提交日志：git log 另一种查看方法 git log --pretty=oneline
+查看所有的git命令记录：git reflog
+查看文件是前后改动：git diff filename
+版本回退到上一个版本：git reset --hard HEAD^ 
+版本回退到指定版本：git reset --hard 提交id
+撤销文件在工作区的全部修改：git checkout -- filename
+撤销暂存区的全部修改：git reset HEAD filename
