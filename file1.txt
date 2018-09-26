@@ -48,3 +48,7 @@ $ git stash apply stash@{0}
 推送所有本地标签到远程：git push origin --tags
 如果标签已经推送到远程，要删除远程标签就麻烦一点，先从本地删除：git tag -d v1.0
 然后，从远程删除。删除命令也是push，但是格式如下：git push origin :refs/tags/v1.0
+
+小应用:
+1.拉取指定版本的代码：新建一个存放项目的目录如：ceshi , 使用命令 git clone 项目地址 获取项目。 终端执行 cd 新建文件目录 ，使用命令 git branch ceshi b9961d1da1389eda691dc8b6d43cdc1143db4651（该命令：新建分支 ceshi,并且拉取 提交Id b9961d1da1389eda691dc8b6d43cdc1143db4651 的代码）。最终执行 git checkout cechi 即可获取 b9961d1da1389eda691dc8b6d43cdc1143db4651 这次提交时的代码。
+
